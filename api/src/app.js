@@ -3,10 +3,14 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
+const { YOUR_API_KEY } = require('./db');
+const axios = require('axios');
 
-require('./db.js');
+const {Recipe, conn } = require('./db.js');
 
 const server = express();
+
+server.use(express.json());
 
 server.name = 'API';
 
@@ -21,6 +25,62 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
+
+// server.post('/prueba', async (req, res) => {
+//     const {name} = req.body;
+//     try {
+//       const newRecipe = await Recipe.create({
+//         name
+//       })
+//       res.json(newRecipe);
+      
+//     } catch (error) {
+//       res.send(error);
+//     }
+// });
+const max_results = 2;
+
+
+// server.post('/:name', async (req, res) => {
+//   // console.log(YOUR_API_KEY);
+//   const {name} = req.params;
+//   // console.log(name);
+//   try {
+//     const result = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&title=${name}&number=${max_results}`)
+//     const results = result.data.results;
+//     // console.log(results);
+//     // res.json(results);
+//     console.log(results);
+//     const array = results.map(async e => await Recipe.create({
+//       title: e.title,
+//       image: e.image
+//     }));
+//     res.json(array);
+//   } catch (error) {
+//     res.send(error);
+//   }
+//  });
+
+server.post('/create', async (req, res) => {
+  console.log(req.body);
+  const {name, summary, puntuacion, level, pasoapaso, dieta} = req.body;
+  try {
+    
+    const newRecipe = await Recipe.create({
+      title: name,
+      summary: summary,
+      puntuacion: puntuacion,
+      level: level,
+      pasos: pasoapaso,
+    })
+    res.json(newRecipe);
+  } catch (error) {
+    console.log(error);
+  }
+  // const {title, dishTypes, spoonacularScore, level, summary} = req.body;
+
+});
+
 
 server.use('/', routes);
 

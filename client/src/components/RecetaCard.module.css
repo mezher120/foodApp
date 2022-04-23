@@ -1,0 +1,33 @@
+.icons {
+    width: 15px;
+    height: 15px;
+}
+
+.title {
+    align-self: center;
+    text-decoration: none;
+    text-align: center;
+}
+
+.image {
+    width: 150px;
+    height: 150px; 
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 5px;
+    width: 150px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.listicons {
+display: flex;
+flex-direction: row;
+justify-content: center;
+gap: 5px;
+
+}

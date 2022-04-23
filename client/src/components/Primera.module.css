@@ -1,0 +1,48 @@
+.distribucion {
+    display: flex;
+    flex-direction: column;
+    background-image: url("./fondo.jpg");
+    background-size: cover;
+            /* Rellenamos el fondo */
+            min-height: 100%;   
+            min-width: 100%;
+     
+            /* Escalamiento proporcional */
+            width: 100%;
+            height: auto;
+     
+            /* Posicionamiento */
+            position: fixed;
+            top: 0;
+            left: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: auto;
+    height: 250px;
+}
+
+
+.botonera {
+    border: solid 1px red;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px;
+    background-color: gray;
+    display: inline-block;
+    height: fit-content;
+    width: fit-content;
+}
+
+.botonera:hover {
+    padding: 5px;
+    margin: 10px;
+    border: green solid 1px;
+    background-color: greenyellow;
+    border-radius: 5px;
+    display: inline-block;
+    height: fit-content;
+    width: fit-content;
+}

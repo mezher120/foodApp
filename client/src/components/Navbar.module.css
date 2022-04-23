@@ -1,0 +1,28 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+    background-color: gray;
+}
+
+.icono {
+    width: 40px;
+    height: 30px;
+}
+
+.botonera {
+    padding: 5px;
+    margin: 10px;
+    border: black solid 1px;
+    background-color: gray;
+    border-radius: 5px;
+}
+
+.botonera:hover {
+    padding: 5px;
+    margin: 10px;
+    border: green solid 1px;
+    background-color: greenyellow;
+    border-radius: 5px;
+}
