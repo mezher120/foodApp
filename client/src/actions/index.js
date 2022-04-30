@@ -1,13 +1,13 @@
 import axios from "axios";
 
-export function createRecipe(info) {
-    try {
-        axios.post('http://localhost:3001/recipe/', info)
-        .then(res => console.log(res));
-    } catch (error) {
-        console.log(error);
-    }
-}
+// export function createRecipe(info) {
+//     try {
+//         axios.post('http://localhost:3001/recipe/', info)
+//         .then(res => console.log(res));
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
 
 // export function getDetail(id) {
 //     return function (dispatch) {
@@ -42,12 +42,22 @@ export function filter(info) {
     return { type: "FILTER", payload: info}
 }
 
+export function filtering(name, filter) {
+    console.log(name, filter, "actions filtering")
+    return function (dispatch) {
+        return axios(`http://localhost:3001/recipes/filter?name=${name}&filter=${filter}`)
+            .then(r => r.data)
+            .then(res => dispatch({type: "FILTER", payload: res}))
+            .catch(error => console.log(error))
+    }
+}
+
 
 export function searching(input) {
     return function (dispatch) {
         return axios(`http://localhost:3001/recipes?name=${input.name}`)
             .then(r => r.data)
-            .then(res => dispatch({type: "SEARCH", payload: res}))
+            .then(res => dispatch({type: "SEARCH", payload: {res, input}}))
             .catch(error => console.log(error))
     }
 }

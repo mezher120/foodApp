@@ -3,7 +3,7 @@ import Receta from "./RecetaCard";
 import Pagination from "./Pagination";
 import { useSelector, useDispatch } from "react-redux";
 import Order from './Order';
-import {ordenDescendente, ordenAscendente, filter} from '../actions'
+import {ordenDescendente, ordenAscendente, filtering} from '../actions'
 import s from "./Home.module.css"
 
 export default function Home(props) {
@@ -11,11 +11,12 @@ export default function Home(props) {
     
     // const [order, setOrder] = useState("");
     const selector = useSelector((state) => state.search)
-    const filterState = useSelector((state) => state.filter)
+    const nameFilter = useSelector((state) => state.namefilter)
     const [currentPage, setCurrentPage] = useState(0);
     // const [posts, setPosts] = useState([]);
     // const [sortDown, setSortDown] = useState(true);
     console.log(selector, "selector");
+    console.log(nameFilter, "filtering");
     const dispatch = useDispatch();
 
     let currentPosts = selector.slice(currentPage, currentPage + 9);
@@ -128,6 +129,14 @@ function SortScoreZA(e) {
     }  
 }
 
+
+function Filter2(e) {
+    e.preventDefault();
+    const filteri = nameFilter;
+    console.log(filteri, e.target.value, "filter2")
+    dispatch(filtering(filteri, e.target.value));
+}
+
 function Filter(e) {
     e.preventDefault();
     const type = e.target.value;
@@ -234,11 +243,11 @@ function Filter(e) {
             </div>
             <div>
             Filter By:  
-            <button onClick={(e) => Filter(e)} value="all">All</button>
-            <button onClick={(e) => Filter(e)} value="vegan">Vegan</button>
-            <button onClick={(e) => Filter(e)} value="vegetarian">Vegetarian</button>
-            <button onClick={(e) => Filter(e)} value="glutenFree">Gluten Free</button>
-            <button onClick={(e) => Filter(e)} value="diaryHealthy">Diary Healthy</button>
+            <button onClick={(e) => Filter2(e)} value="all">All</button>
+            <button onClick={(e) => Filter2(e)} value="vegan">Vegan</button>
+            <button onClick={(e) => Filter2(e)} value="vegetarian">Vegetarian</button>
+            <button onClick={(e) => Filter2(e)} value="glutenFree">Gluten Free</button>
+            <button onClick={(e) => Filter2(e)} value="diaryHealthy">Diary Healthy</button>
 
             </div>
             

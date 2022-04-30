@@ -3,7 +3,7 @@ const initialState = {
     receta: [],
     detail: {},
     search: [],
-    filter: []
+    namefilter: ""
 }
 
 console.log(initialState, "a ver que pasa");
@@ -44,12 +44,12 @@ export default function reducer(state = initialState, action) {
         case "FILTER":
             console.log(action.payload, "filter reducer");
             return {
-                ...state, filter: action.payload
+                ...state, search: action.payload
             }
         case "SEARCH":
             console.log(action.payload, "reducer search");
             return {
-                ...state, search: action.payload
+                ...state, search: action.payload.res, namefilter: action.payload.input.name
             }
             
         default:

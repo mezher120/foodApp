@@ -1,12 +1,12 @@
 import React from "react";
-import { createRecipe } from "../actions";
 import { connect } from "react-redux";
 import s from "./Create.module.css";
+import axios from "axios";
 
-export function Create(props) {
+export default function Create(props) {
 
     let [input, setInput] = React.useState({
-        name: "",
+        title: "",
         summary: "",
         puntuacion: "",
         level: "",
@@ -49,10 +49,16 @@ export function Create(props) {
 
     let handleSubmit = (e) => {
         e.preventDefault();
-        if (input.name && input.summary) {
-            props.createRecipe(input);
+        if (input.title && input.summary) {
+            // props.createRecipe(input);
+            try {
+                axios.post('http://localhost:3001/recipe/', input)
+                .then(res => console.log(res));
+            } catch (error) {
+                console.log(error);
+            }
             setInput({ 
-            name: "",
+            title: "",
             summary: "",
             puntuacion: "",
             level: "",
@@ -85,12 +91,12 @@ export function Create(props) {
             <br></br>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div>
-                <label>Nombre:</label>
-                <input type="text" name="name" value={input.name} onChange={(e) => handleChange(e)}></input>
+                <label>Titulo:</label>
+                <input className={!error ? null : s.errorInput} type="text" name="title" value={input.title} onChange={(e) => handleChange(e)}></input>
                 </div>
                 <div>
                 <label>Resumen del plato:</label>
-                <textarea type="text" name="summary" value={input.summary} maxLength='250' onChange={(e) => handleChange(e)} rows="3" cols="50"></textarea>
+                <textarea type="text" className={!error ? null : s.errorInput} name="summary" value={input.summary} maxLength='250' onChange={(e) => handleChange(e)} rows="3" cols="50"></textarea>
                 </div>
                 <div>
                 <label>Puntuacion:</label>
@@ -106,12 +112,6 @@ export function Create(props) {
                 </div>
                 <div>
                 <label>Dieta:</label>
-                <select name="dieta" value={input.dieta} multiple onChange={(e) => handleChangeOptions(e)}>
-                    <option value="dieta1">Dieta1</option>
-                    <option value="dieta2">Dieta2</option>
-                    <option value="dieta3">Dieta3</option>
-                    <option value="dieta4">Dieta4</option>
-                </select>
                 <div>
                 <label>Dieta1:</label>
                 <input type="checkbox" name="dieta1" value={input.dieta.dieta1} onChange={(e) => handleChangeChecked(e)}></input>
@@ -135,10 +135,10 @@ export function Create(props) {
     )
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        createRecipe: (input) => dispatch(createRecipe(input))
-    }
-}
+// function mapDispatchToProps(dispatch) {
+//     return {
+//         createRecipe: (input) => dispatch(createRecipe(input))
+//     }
+// }
 
-export default connect(null, mapDispatchToProps)(Create)
+// export default connect(null, mapDispatchToProps)(Create)
