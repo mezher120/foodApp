@@ -2,6 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Navbar.module.css";
 import icono from "./icono.png";
+import { searching } from "../actions";
+import { useDispatch } from "react-redux";
 
 
 
@@ -11,6 +13,8 @@ export default function Navbar(props) {
     let [input, setInput] = React.useState({
         name: ""
     });
+
+    let dispatch = useDispatch();
     
     let handleOnChange = (e) => {
         setInput({...input, [e.target.name]: e.target.value})
@@ -18,7 +22,8 @@ export default function Navbar(props) {
 
     let handleOnSubmit = (e) => {
         e.preventDefault();
-        props.getSearch(input)
+        // props.getSearch(input)
+        dispatch(searching(input));
     }
 
     return (

@@ -11,10 +11,10 @@ router.get('/', async (req, res) => {
     if (name) {
         
         try {
-            const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&query=${name}&addRecipeInformation=true&number=4`)
+            const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&query=${name}&addRecipeInformation=true&number=20`)
             console.log(response.data.results, "hola");
             const data = response.data.results.map(e => ({id: e.id, title: e.title, image: e.image, vegetarian: e.vegetarian, vegan: e.vegan, 
-                glutenFree: e.glutenFree, diaryHealthy: e.diaryHealthy}));
+                glutenFree: e.glutenFree, diaryHealthy: e.diaryHealthy, score: e.spoonacularScore}));
             console.log(data);
             res.json(data);
         } catch (error) {

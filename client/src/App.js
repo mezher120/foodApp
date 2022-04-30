@@ -34,10 +34,10 @@ async function getSearch(input) {
       </Route>
       <Route path='/home'>
 
-      <Navbar getSearch={getSearch}></Navbar>
+      <Navbar ></Navbar>
       </Route>
       <Route exact path='/home'>
-      <Home search={search}></Home>
+      <Home ></Home>
        </Route>
       <Route exact path='/home/create'>
       <Create></Create>

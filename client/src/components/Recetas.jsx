@@ -1,50 +1,41 @@
 import React from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getDetail } from "../actions";
 
 
 export default function Recetas(props) {
     // console.log(props);
     let id = props.match.params.id;
+
+    // let detail = useSelector(state => state.detail);
+    // let dispatch = useDispatch; 
     let [detail, setDetail] = React.useState({});
-    // let dispatch = useDispatch;
 
     React.useEffect(() => {
-  
-        const axiosData = async function (id) {
+        async function getDetail(id) {
             try {
                 const resp = await axios.get(`http://localhost:3001/recipes/${id}`)
-                console.log(resp, "quieeeeen");
                 const data = resp.data;
-                console.log(data, "hay o no hay")
                 setDetail(data);
+                return;
             } catch (error) {
-              console.log(error);  
+                console.log(error);
+                return;
             }
-            } 
-        axiosData(id);
-        // dispatch(getDetail(params))
-        // return () => {
-        //     dispatch(deleteDetail())
-        // }
+        }
+        getDetail(id);
+        console.log(detail, "bueno bueno");
     },[]);
-
+    
+    // dispatch(getDetail(params))
+    // return () => {
+    //     dispatch(deleteDetail())
+    // }
     console.log(detail, "que bueno esto");
     
     // let [detail, setDetail] = React.useState("");
     
-    // async function getDetail(id) {
-    //     try {
-    //         const resp = await axios.get(`http://localhost:3001/recipes/${id}`)
-    //         const data = resp.data;
-    //         setDetail(data);
-    //         return;
-    //     } catch (error) {
-    //         console.log(error);
-    //         return;
-    //     }
-    // }
-    // getDetail(params);
-    // console.log(detail, "bueno bueno");
 
     return (
         <div> 
