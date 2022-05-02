@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const {Recipe, Types } = require('../db');
 
-router.get('/', (req, res) => {
-    res.send('recipe con una sola s');
+router.get('/', async (req, res) => {
+    const types = await Types.findAll();
+
+    res.json(types);
 });
 
 router.post('/', async (req, res) => {
@@ -18,23 +20,13 @@ router.post('/', async (req, res) => {
         level: level,
         pasos: pasoapaso,
       })
-      // if (dieta.dieta1 === true) {
-      //   newRecipe.addRecipeTypes()
-        
-      // }
+        await newRecipe.addTypes(dieta);
+
       res.json(newRecipe);
     } catch (error) {
       console.log(error);
     }
-    try {
-          const newType = await Types.create({
-          title: summary,
-        })
-        res.json(newType);
-      } catch (error) {
-        console.log(error);
-      }
-
+   
 });  
 
 router.post('/:props', async (req, res) => {

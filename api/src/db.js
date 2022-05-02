@@ -35,11 +35,11 @@ const { Recipe, Types } = sequelize.models;
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 Recipe.belongsToMany(Types, {
-  through: "RecipeTypes"
+  through: "recipetypes"
 })
 
 Types.belongsToMany(Recipe, {
-  through: "RecipeTypes"
+  through: "recipetypes"
 })
 
 module.exports = {

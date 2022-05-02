@@ -255,7 +255,7 @@ function Filter(e) {
             
 
             {currentPosts && currentPosts.map(e => <div key={e.id}>
-               <Receta key={e.id} id={e.id} title={e.title} image={e.image} vegetarian={e.vegetarian} vegan={e.vegan} glutenFree={e.glutenFree} diaryHealthy={e.diaryHealthy}></Receta>
+               <Receta key={e.id} id={e.id} title={e.title} image={e.image} score={e.score} types={e.types} ></Receta>
            </div>) 
            }
             </div>
