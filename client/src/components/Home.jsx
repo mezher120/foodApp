@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Receta from "./RecetaCard";
-import Pagination from "./Pagination";
 import { useSelector, useDispatch } from "react-redux";
-import Order from './Order';
 import {ordenDescendente, ordenAscendente, filtering} from '../actions'
 import s from "./Home.module.css"
 
@@ -53,10 +51,10 @@ function SortAZ(e) {
     const copy = [...selector];
     if (copy) {
         const copy2 = copy.sort(function (a, b) {
-             if (a.title > b.title) {
+             if (a.title.toLowerCase() > b.title.toLowerCase()) {
                  return 1;
              }
-             if (a.title < b.title) {
+             if (a.title.toLowerCase() < b.title.toLowerCase()) {
                  return -1;
              }        
              return 0;
@@ -68,15 +66,17 @@ function SortAZ(e) {
     }
 }
 
+
+
 function SortZA(e) {
     e.preventDefault();
     const copy = [...selector];
     if (copy) {
-        const copy2 = copy.sort(function (a, b) {
-             if (a.title > b.title) {
+        const copy2 =  copy.sort(function (a, b) {
+             if (a.title.toLowerCase() > b.title.toLowerCase()) {
                  return -1;
              }
-             if (a.title < b.title) {
+             if (a.title.toLowerCase() < b.title.toLowerCase()) {
                  return 1;
              }        
              return 0;
@@ -235,19 +235,19 @@ function Filter(e) {
                 </select> */}
             <div>
             Order By: 
-            <button onClick={(e) => SortAZ(e)}>A/Z</button>
-            <button onClick={(e) => SortZA(e)}>Z/A</button>
-            <button onClick={(e) => SortScoreAZ(e)}>Score 1/9</button>
-            <button onClick={(e) => SortScoreZA(e)}>Score 9/1</button>
+            <button className={s.buttonsFilters} onClick={(e) => SortAZ(e)}>A/Z</button>
+            <button className={s.buttonsFilters} onClick={(e) => SortZA(e)}>Z/A</button>
+            <button className={s.buttonsFilters} onClick={(e) => SortScoreAZ(e)}>Score 1/9</button>
+            <button className={s.buttonsFilters} onClick={(e) => SortScoreZA(e)}>Score 9/1</button>
 
             </div>
             <div>
             Filter By:  
-            <button onClick={(e) => Filter2(e)} value="all">All</button>
-            <button onClick={(e) => Filter2(e)} value="vegan">Vegan</button>
-            <button onClick={(e) => Filter2(e)} value="vegetarian">Vegetarian</button>
-            <button onClick={(e) => Filter2(e)} value="glutenFree">Gluten Free</button>
-            <button onClick={(e) => Filter2(e)} value="diaryHealthy">Diary Healthy</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter2(e)} value="all">All</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter2(e)} value="vegan">Vegan</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter2(e)} value="vegetarian">Vegetarian</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter2(e)} value="glutenFree">Gluten Free</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter2(e)} value="diaryHealthy">Diary Healthy</button>
 
             </div>
             
@@ -259,8 +259,8 @@ function Filter(e) {
            </div>) 
            }
             </div>
-           <button onClick={(e) => atrasOnClick(e)}>Atras</button>
-           <button onClick={(e) => adelanteOnClick(e)}>Adelante</button>
+           <button className={s.buttonsFilters} onClick={(e) => atrasOnClick(e)}>Atras</button>
+           <button className={s.buttonsFilters} onClick={(e) => adelanteOnClick(e)}>Adelante</button>
            {/* <Pagination postsPerPage={postsPerPage} totalPosts={selector.length} paginate={paginate}></Pagination> */}
         </div>
     )

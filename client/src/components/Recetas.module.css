@@ -1,10 +1,20 @@
 .container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    margin-left: 10px;
+    width: 50%;
+}
+
+.titulo {
+    font-size: large;
+    font-weight: bold;
+}
+
+.subtitulos {
+    font-size: medium;
+    font-weight: bold;
 
 }
 
-.buttonsFilters {
+.buttons {
     background-color: rgb(133, 93, 0);
     border: none;
     color: white;
@@ -19,7 +29,7 @@
     cursor: pointer;
 }
 
-.buttonsFilters:hover {
+.buttons:hover {
     background-color: rgb(112, 79, 0);
     border: none;
     color: white;

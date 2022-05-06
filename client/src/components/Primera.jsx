@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Primera.module.css";
 import logo from "../imagen.png";
+import logo2 from "../icons/iconofood.png";
 import axios from "axios";
 
 export default function Principal(props) {
@@ -16,7 +17,7 @@ export default function Principal(props) {
 
     return (
         <div className={s.distribucion}>
-            <img className={s.logo} src={logo} alt="Not found"></img>
+            <img className={s.logo} src={logo2} alt="Not found"></img>
             <NavLink to='/home' className={s.botonera}>Entrar</NavLink>
         </div>
     )

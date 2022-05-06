@@ -7,11 +7,22 @@
     align-self: center;
     text-decoration: none;
     text-align: center;
+    color: black;
+    font-family: Helvetica;
+
 }
 
 .image {
     width: 150px;
     height: 150px; 
+}
+
+.types {
+    display: flex;
+    justify-content: center;
+    flex-direction: row; 
+    gap: 10px;
+    width: 150px;
 }
 
 .card {
@@ -20,13 +31,26 @@
     justify-content: space-between;
     margin: 5px;
     width: 150px;
-    border: 1px solid black;
+
     border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.card:hover {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 5px;
+    width: 150px;
+
+    border-radius: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .listicons {
 display: flex;
-flex-direction: row;
+flex-direction: column;
 justify-content: center;
 gap: 5px;
 

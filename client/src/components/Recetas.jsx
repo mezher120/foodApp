@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../actions";
+import s from './Recetas.module.css';
+import iconofood from '../icons/iconofood.png';
 
 
 export default function Recetas(props) {
@@ -38,24 +40,25 @@ export default function Recetas(props) {
     
 
     return (
-        <div> 
-            <div>Titulo: {detail.title}</div>
-            <div><img src={detail.image} alt="not found"></img></div>
-            <div>Summary:</div>
+        <div className={s.container}> 
+            <div className={s.titulo} >Titulo: {detail.title}</div>
+            <div><img width="300px" height="300px" src={detail.image ? detail.image : iconofood} alt="not found"></img></div>
+            <div className={s.subtitulos} >Summary:</div>
             <div dangerouslySetInnerHTML={{__html: detail.summary}}></div>
+            <br></br>
+            <div className={s.subtitulos} >Types</div>
+            <ul>
+                {detail.types && detail.types.map(e => <li>{e}</li>)}
+            </ul>
             <div>
-            <div>{detail.vegetarian ? <div>Si vegetarian</div> : null}</div>
-            <div>{detail.vegan ? <div>Si vegetarian</div> : null}</div>
-            <div>{detail.glutenFree ? <div>Si vegetarian</div> : null}</div>
-            <div>{detail.dairyFree ? <div>Si vegetarian</div> : null}</div>
-            <div>{detail.veryHealthy ? <div>Si vegetarian</div> : null}</div>
+            <div className={s.subtitulos}>Score: {detail.score}</div>
+            <div className={s.subtitulos}>Health Score: {detail.healthScore}</div>
             </div>
-            <div>
-            <div>Score: {detail.spoonacularScore}</div>
-            <div>Health Score: {detail.healthScore}</div>
-            </div>
-            <div>Instructions:</div>
+            <br></br>
+            <div className={s.subtitulos}>Instructions:</div>
             <div dangerouslySetInnerHTML={{__html: detail.instructions}}></div>
+            <br></br>
+            <button className={s.buttons} onClick={() => props.history.goBack()}>Volver</button>
             </div>
     )   
 }

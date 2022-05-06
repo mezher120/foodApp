@@ -26,23 +26,27 @@
 
 
 .botonera {
-    border: solid 1px red;
+    border: solid 1px rgb(255, 255, 255);
     border-radius: 5px;
     padding: 5px;
     margin: 10px;
-    background-color: gray;
+    background-color: transparent;
     display: inline-block;
     height: fit-content;
     width: fit-content;
+    text-decoration: none;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .botonera:hover {
     padding: 5px;
     margin: 10px;
-    border: green solid 1px;
-    background-color: greenyellow;
+    border: rgb(166, 255, 0) solid 1px;
+    background-color: rgba(151, 151, 151, 0.51);
     border-radius: 5px;
     display: inline-block;
     height: fit-content;
     width: fit-content;
+    color: white;
 }

@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import s from "./Create.module.css";
 import axios from "axios";
-import TypeCard from "./TypesCreate";
 
 export default function Create(props) {
 
@@ -16,6 +15,7 @@ export default function Create(props) {
     })
     let [types , setTypes] = React.useState("");
     let [error , setError] = React.useState("");
+    let [error1 , setError1] = React.useState("");
 
      React.useEffect(() => {
         async function getData() {
@@ -32,7 +32,7 @@ export default function Create(props) {
         console.log(e.target.selectedOptions);
         setInput({...input, [e.target.name]: e.target.value})
     }
-
+    
     let handleChangeChecked = (e) => {
         let dieta = [];
         if (input.dieta.length > 0) {
@@ -84,8 +84,10 @@ export default function Create(props) {
             pasoapaso: "",
             dieta: []
                 })
+            setError("");
+            setError1("");
         } else {
-            setError('Todos los campos son requeridos');
+            setError('Los campos Titulo y Resumen son requeridos');
         }
 
     }
@@ -93,9 +95,9 @@ export default function Create(props) {
     let validate1 = (value) => {
         console.log(value);
         if(value < 0 || value > 10) {
-            setError('El nivel saludable debe estar comprendido entre 1 y 9');
+            setError1('El nivel saludable debe estar comprendido entre 1 y 9');
             } else {
-            setError('');
+            setError1('');
             setInput({...input, level: value});
             }
         }
@@ -105,31 +107,34 @@ export default function Create(props) {
             <h1>Crear Receta</h1>
             <br></br>
             <form onSubmit={(e) => handleSubmit(e)}>
-                <div>
+            <div className={s.container}>
+            <div>
+                <div className={s.inputs}>
                 <label>Titulo:</label>
                 <input className={!error ? null : s.errorInput} type="text" name="title" value={input.title} onChange={(e) => handleChange(e)}></input>
                 </div>
-                <div>
-                <label>Resumen del plato:</label>
+                <div  className={s.inputs}>
+                <label >Resumen del plato:</label>
                 <textarea type="text" className={!error ? null : s.errorInput} name="summary" value={input.summary} maxLength='250' onChange={(e) => handleChange(e)} rows="3" cols="50"></textarea>
                 </div>
-                <div>
-                <label>Puntuacion:</label>
+                <div className={s.inputs}>
+                <label>Puntuacion: {input.puntuacion} </label>
                 <input type="range" min="0" max="99" step="1" name="puntuacion" value={input.puntuacion} onChange={(e) => handleChange(e)}></input>
                 </div>
-                <div>
+                <div className={s.inputs} >
                 <label>Nivel de "comida saludable":</label>
-                <input type="text" name="level" value={input.level} onChange={(e) => validate1(e.target.value)}></input>
+                <input className={!error1 ? null : s.errorInput} type="number" name="level" value={input.level} onChange={(e) => validate1(e.target.value)}></input>
                 </div>
-                <div>
+                <div className={s.inputs} >
                 <label>Paso a paso:</label>
                 <textarea type='text' name='pasoapaso' value={input.pasoapaso} onChange={(e) => handleChange(e)} rows="3" cols="50"></textarea>
                 </div>
-                <div>
+            </div>
+            <div>
                 <label>Dieta:</label>
                 <div>
                 {types.data && types.data.map(element => 
-                    <div key={element.id}>
+                    <div className={s.checkbox} key={element.id}>
                         <label>{element.title}</label>
                         <input type="checkbox" name={element.title} value={element.id} onChange={(e) => handleChangeChecked(e)}></input>
                     </div>
@@ -143,14 +148,20 @@ export default function Create(props) {
                 <label>Dieta4:</label>
                 <input type="checkbox" name="dieta4" value={input.dieta.dieta4} onChange={(e) => handleChangeChecked(e)}></input> */}
                 </div>
-                </div>
+            </div>
+            </div>
                 {/* <div>{`Falta completar: ${!input.name ? "nombre, " : ""}${!input.summary ? "edad, " : ""}${!input.puntuacion ? "ciudad, " : ""}${!input.level ? "mail " : ""} `} </div>
                 {!error ? null : <span className={s.error}>{error}</span>}
                 </div> */}
                 <div>
+                <div>
                 {!error ? null : <span className={s.error}>{error}</span>}
                 </div>
-                <input type="submit" value="Crear receta"></input>
+                <div>
+                {!error1 ? null : <span className={s.error}>{error1}</span>}
+                </div>
+                </div>
+                <input className={s.submit} type="submit" value="Crear receta"></input>
             </form>
         </div>
     )
