@@ -9,28 +9,36 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  try {
-      const newType = await Types.bulkCreate([
-        { title: "vegan"},
-        { title: "vegetarian"},
-        { title: "glutenFree"},
-        { title: "ketogenic"},
-        { title: "Pescetarian"},
-        { title: "lacto vegetarian"},
-        { title: "ovo vegetarian"},
-        { title: "Paleo"},
-        { title: "Primal"},
-        { title: "Low FODMAP"},
-        { title: "Whole30"},
-        { title: "fruitarian"},
-        { title: "dairy free"},
-      ])
 
-      res.json(newType);
+  const count = await Types.count();
+
+  if (count === 0) {
+    
+    try {
+        const newType = await Types.bulkCreate([
+          { title: "vegan"},
+          { title: "vegetarian"},
+          { title: "glutenFree"},
+          { title: "ketogenic"},
+          { title: "Pescetarian"},
+          { title: "lacto vegetarian"},
+          { title: "ovo vegetarian"},
+          { title: "Paleo"},
+          { title: "Primal"},
+          { title: "Low FODMAP"},
+          { title: "Whole30"},
+          { title: "fruitarian"},
+          { title: "dairy free"},
+        ])
   
-    } catch (error) {
-      console.log(error);
-    }
+        res.json(newType);
+    
+      } catch (error) {
+        console.log(error);
+      }
+  } else {
+    res.send("Los types estan cargados");
+  }
 })
 
 // router.post('/:dieta', async (req, res) => {
