@@ -33,6 +33,7 @@ export default function RecetaCard({id, title, image, score, types}) {
                 (items === "Pescetarian") ? <img className={s.icons} src={fish} alt="Not Found"></img> : 
                 (items === "lacto vegetarian") ? <img className={s.icons} src={vegetariano} alt="Not Found"></img> : 
                 (items === "ovo vegetarian") ? <img className={s.icons} src={vegetariano} alt="Not Found"></img> : 
+                (items === "lacto ovo vegetarian") ? <img className={s.icons} src={katogenic} alt="Not Found"></img> : 
                 (items === "Primal") ? <img className={s.icons} src={meat} alt="Not Found"></img> : 
                 (items === "Paleo") ? <img className={s.icons} src={meat} alt="Not Found"></img> : 
                 (items === "Low FODMAP") ? <img className={s.icons} src={katogenic} alt="Not Found"></img> : 

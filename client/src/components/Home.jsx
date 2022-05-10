@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Receta from "./RecetaCard";
 import { useSelector, useDispatch } from "react-redux";
-import {ordenDescendente, ordenAscendente, filtering} from '../actions'
+import {ordenDescendente, ordenAscendente, filtering, filter1, all} from '../actions'
 import s from "./Home.module.css"
 
 export default function Home(props) {
@@ -145,39 +145,43 @@ function Filter(e) {
     const copy = [...selector];
     if (copy) {
         if (type === "all") {
-            
-            const copy2 = copy.filter(e => e.vegan === true)
-         
-             dispatch(ordenDescendente(copy2));
-             console.log(copy2, "za)")
+                  
+             dispatch(all());
+
         }
         if (type === "vegan") {
             
-            const copy2 = copy.filter(e => e.vegan === true)
+            // const copy2 = copy.filter(e => e.vegan === true)
          
-             dispatch(ordenDescendente(copy2));
-             console.log(copy2, "za)")
+             dispatch(filter1(type));
         }
         if (type === "vegetarian") {
             
-            const copy2 = copy.filter(e => e.vegetarian === true)
-         
-             dispatch(ordenDescendente(copy2));
-             console.log(copy2, "za)")
+            dispatch(filter1(type));
         }
         if (type === "glutenFree") {
             
-            const copy2 = copy.filter(e => e.glutenFree === true)
-         
-             dispatch(ordenDescendente(copy2));
-             console.log(copy2, "za)")
+            dispatch(filter1(type));
         }
         if (type === "diaryHealthy") {
             
-            const copy2 = copy.filter(e => e.diaryHealthy === true)
-         
-             dispatch(ordenDescendente(copy2));
-             console.log(copy2, "za)")
+            dispatch(filter1(type));
+        }
+        if (type === "ketogenic") {
+            
+            dispatch(filter1(type));
+        }
+        if (type === "Pescetarian") {
+            
+            dispatch(filter1(type));
+        }
+        if (type === "Paleo") {
+            
+            dispatch(filter1(type));
+        }
+        if (type === "Whole30") {
+            
+            dispatch(filter1(type));
         }
      
     }  
@@ -243,12 +247,16 @@ function Filter(e) {
             </div>
             <div>
             Filter By:  
-            <button className={s.buttonsFilters} onClick={(e) => Filter2(e)} value="all">All</button>
-            <button className={s.buttonsFilters} onClick={(e) => Filter2(e)} value="vegan">Vegan</button>
-            <button className={s.buttonsFilters} onClick={(e) => Filter2(e)} value="vegetarian">Vegetarian</button>
-            <button className={s.buttonsFilters} onClick={(e) => Filter2(e)} value="glutenFree">Gluten Free</button>
-            <button className={s.buttonsFilters} onClick={(e) => Filter2(e)} value="diaryHealthy">Diary Healthy</button>
-
+            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="all">All</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="vegan">Vegan</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="vegetarian">Vegetarian</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="glutenFree">Gluten Free</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="diaryHealthy">Diary Healthy</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="ketogenic">Ketogenic</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="Pescetarian">Pescetarian</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="Paleo">Paleo</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="Primal">Primal</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="Whole30">Whole30</button>
             </div>
             
             <div className={s.container}>

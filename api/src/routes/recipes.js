@@ -4,9 +4,9 @@ const {Op} = require('sequelize');
 const axios = require('axios');
 const {YOUR_API_KEY} = require('../db');
 const {Types, Recipe } = require('../db');
-const e = require('express');
+
  
-router.get('/filter', async (req, res) => {
+router.get('/filter', async (req, res, next) => {
     const {name, filter} = req.query; 
     console.log(name);
     if (filter === "vegan") {
@@ -15,7 +15,7 @@ router.get('/filter', async (req, res) => {
             const allTypes = await Types.findAll();
      
 
-            const apiResponse = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&query=${name}&addRecipeInformation=true&number=30`)
+            const apiResponse = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&query=${name}&addRecipeInformation=true&number=100`)
             dataFromApi = [];
             apiResponse.data.results.forEach(element => {
                 data = {
@@ -87,16 +87,15 @@ router.get('/filter', async (req, res) => {
             // console.log(data);
             // res.json(filter);
         } catch (error) {
-            console.log(error);
+            next(error);
         }
-    } 
-    if (filter === "vegetarian") {
+    } else if (filter === "vegetarian") {
         
         try {
             const allTypes = await Types.findAll();
      
 
-            const apiResponse = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&query=${name}&addRecipeInformation=true&number=20`)
+            const apiResponse = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&query=${name}&addRecipeInformation=true&number=100`)
             dataFromApi = [];
             apiResponse.data.results.forEach(element => {
                 data = {
@@ -158,16 +157,15 @@ router.get('/filter', async (req, res) => {
             res.json(newFilter);
 
         } catch (error) {
-            console.log(error);
+            next(error);
         }
-    } 
-    if (filter === "glutenFree") {
+    } else if (filter === "glutenFree") {
         
         try {
             const allTypes = await Types.findAll();
      
 
-            const apiResponse = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&query=${name}&addRecipeInformation=true&number=20`)
+            const apiResponse = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&query=${name}&addRecipeInformation=true&number=100`)
             dataFromApi = [];
             apiResponse.data.results.forEach(element => {
                 data = {
@@ -229,15 +227,14 @@ router.get('/filter', async (req, res) => {
             res.json(newFilter);
 
         } catch (error) {
-            console.log(error);
+            next(error);
         }
-    } 
-    if (filter === "diaryHealthy") {
+    } else if (filter === "diaryHealthy") {
         
         try {
             const allTypes = await Types.findAll();
      
-            const apiResponse = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&query=${name}&addRecipeInformation=true&number=20`)
+            const apiResponse = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&query=${name}&addRecipeInformation=true&number=100`)
             dataFromApi = [];
             apiResponse.data.results.forEach(element => {
                 data = {
@@ -300,14 +297,14 @@ router.get('/filter', async (req, res) => {
             res.json(newFilter);
 
         } catch (error) {
-            console.log(error);
+            next(error);
         }
     } else {
         try {
             const allTypes = await Types.findAll();
      
             // Map the apiResponse to the front end object
-            const apiResponse = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&query=${name}&addRecipeInformation=true&number=20`)
+            const apiResponse = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&query=${name}&addRecipeInformation=true&number=100`)
             dataFromApi = [];
             apiResponse.data.results.forEach(element => {
                 data = {
@@ -367,13 +364,13 @@ router.get('/filter', async (req, res) => {
             const dataFinal = dataFromApi.concat(dataFromDb);
             res.json(dataFinal);
         } catch (error) {
-            console.log(error);
+            next(error);
         }
  
     }
 });
  
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
     const {name} = req.query;
     
     if (!name) {
@@ -404,7 +401,7 @@ router.get('/', async (req, res) => {
                 // }
                 if (element.hasOwnProperty(typeTitle) && element[typeTitle] === true) {
                     dataTypes.push(typeTitle);
-                } else if (element.diets.includes(typeTitle)) {
+                } else if (element.diets.includes(typeTitle.toLowerCase())) {
                     dataTypes.push(typeTitle);
                 }
             });
@@ -443,11 +440,11 @@ router.get('/', async (req, res) => {
         res.json(dataFromApi.concat(dataFromDb));
  
     } catch (error) {
-        console.log(error);
+        next(error);
     }
 });
  
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
     const { id } = req.params;
     if (id.length < 10) {
         
@@ -485,7 +482,7 @@ router.get('/:id', async (req, res) => {
                     // }
                     if (objResp.hasOwnProperty(typeTitle) && objResp[typeTitle] === true) {
                         dataTypes.push(typeTitle);
-                    } else if (objResp.diets.includes(typeTitle)) {
+                    } else if (objResp.diets.includes(typeTitle.toLowerCase())) {
                         dataTypes.push(typeTitle);
                     }
                 });
@@ -543,14 +540,12 @@ router.get('/:id', async (req, res) => {
             res.json(objDB);
             
         } catch (error) {
-            console.log(error);
+            next(error);
         }
         
     }
  
-})
+});
  
- 
-module.exports = router;
 
-  
+module.exports = router; 

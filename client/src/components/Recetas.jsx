@@ -28,6 +28,10 @@ export default function Recetas(props) {
         }
         getDetail(id);
         console.log(detail, "bueno bueno");
+        return () => {
+            setDetail({});
+        }
+
     },[]);
     
     // dispatch(getDetail(params))

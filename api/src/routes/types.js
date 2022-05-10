@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
   res.json(types);
 });
 
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
 
   const count = await Types.count();
 
@@ -23,6 +23,7 @@ router.post('/', async (req, res) => {
           { title: "Pescetarian"},
           { title: "lacto vegetarian"},
           { title: "ovo vegetarian"},
+          { title: "lacto ovo vegetarian"},
           { title: "Paleo"},
           { title: "Primal"},
           { title: "Low FODMAP"},
@@ -34,7 +35,7 @@ router.post('/', async (req, res) => {
         res.json(newType);
     
       } catch (error) {
-        console.log(error);
+        next(error);
       }
   } else {
     res.send("Los types estan cargados");

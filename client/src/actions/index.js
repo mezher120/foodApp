@@ -37,9 +37,13 @@ export function ordenDescendente(info) {
     return { type: "DESCENDENTE", payload: info}
 }
 
-export function filter(info) {
+export function filter1(info) {
     console.log("filter")
     return { type: "FILTER", payload: info}
+}
+
+export function all() {
+    return { type: "ALL"}
 }
 
 export function filtering(name, filter) {

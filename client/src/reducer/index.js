@@ -1,6 +1,6 @@
 
 const initialState = {
-    receta: [],
+    searchcopy: [],
     detail: {},
     search: [],
     namefilter: ""
@@ -43,13 +43,22 @@ export default function reducer(state = initialState, action) {
             }
         case "FILTER":
             console.log(action.payload, "filter reducer");
+            const copy = state.searchcopy;
+            console.log(copy);
+            const filtering = copy.filter(e => e.types.includes(action.payload));
+            console.log(filtering);
             return {
-                ...state, search: action.payload
+                ...state, search: filtering
             }
         case "SEARCH":
             console.log(action.payload, "reducer search");
             return {
-                ...state, search: action.payload.res, namefilter: action.payload.input.name
+                ...state, search: action.payload.res, namefilter: action.payload.input.name, searchcopy: action.payload.res
+            }
+        case "ALL":
+            const all = state.searchcopy;
+            return {
+                ...state, search: all
             }
             
         default:
