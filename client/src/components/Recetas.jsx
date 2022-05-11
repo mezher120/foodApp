@@ -1,7 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { getDetail } from "../actions";
 import s from './Recetas.module.css';
 import iconofood from '../icons/iconofood.png';
 
@@ -10,8 +8,6 @@ export default function Recetas(props) {
     // console.log(props);
     let id = props.match.params.id;
 
-    // let detail = useSelector(state => state.detail);
-    // let dispatch = useDispatch; 
     let [detail, setDetail] = React.useState({});
 
     React.useEffect(() => {
@@ -27,22 +23,15 @@ export default function Recetas(props) {
             }
         }
         getDetail(id);
-        console.log(detail, "bueno bueno");
+        // console.log(detail, "bueno bueno");
         return () => {
             setDetail({});
         }
 
     },[]);
     
-    // dispatch(getDetail(params))
-    // return () => {
-    //     dispatch(deleteDetail())
-    // }
-    console.log(detail, "que bueno esto");
+    // console.log(detail, "que bueno esto");
     
-    // let [detail, setDetail] = React.useState("");
-    
-
     return (
         <div className={s.container}> 
             <div className={s.titulo} >Titulo: {detail.title}</div>

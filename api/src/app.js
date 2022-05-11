@@ -26,60 +26,27 @@ server.use((req, res, next) => {
   next();
 });
 
-// server.post('/prueba', async (req, res) => {
-//     const {name} = req.body;
-//     try {
-//       const newRecipe = await Recipe.create({
-//         name
-//       })
-//       res.json(newRecipe);
-      
-//     } catch (error) {
-//       res.send(error);
-//     }
-// });
+
 const max_results = 2;
 
-
-// server.post('/:name', async (req, res) => {
-//   // console.log(YOUR_API_KEY);
-//   const {name} = req.params;
-//   // console.log(name);
+// server.post('/create', async (req, res) => {
+//   console.log(req.body);
+//   const {name, summary, puntuacion, level, pasoapaso, dieta} = req.body;
 //   try {
-//     const result = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&title=${name}&number=${max_results}`)
-//     const results = result.data.results;
-//     // console.log(results);
-//     // res.json(results);
-//     console.log(results);
-//     const array = results.map(async e => await Recipe.create({
-//       title: e.title,
-//       image: e.image
-//     }));
-//     res.json(array);
-//   } catch (error) {
-//     res.send(error);
-//   }
-//  });
-
-server.post('/create', async (req, res) => {
-  console.log(req.body);
-  const {name, summary, puntuacion, level, pasoapaso, dieta} = req.body;
-  try {
     
-    const newRecipe = await Recipe.create({
-      title: name,
-      summary: summary,
-      puntuacion: puntuacion,
-      level: level,
-      pasos: pasoapaso,
-    })
-    res.json(newRecipe);
-  } catch (error) {
-    console.log(error);
-  }
-  // const {title, dishTypes, spoonacularScore, level, summary} = req.body;
+//     const newRecipe = await Recipe.create({
+//       title: name,
+//       summary: summary,
+//       puntuacion: puntuacion,
+//       level: level,
+//       pasos: pasoapaso,
+//     })
+//     res.json(newRecipe);
+//   } catch (error) {
+//     console.log(error);
+//   }
 
-});
+// });
 
 
 server.use('/', routes);

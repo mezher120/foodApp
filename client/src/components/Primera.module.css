@@ -1,7 +1,7 @@
 .distribucion {
     display: flex;
     flex-direction: column;
-    background-image: url("./fondo.jpg");
+    background-image: url("../icons/fondo.jpg");
     background-size: cover;
             /* Rellenamos el fondo */
             min-height: 100%;   

@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import s from "./Create.module.css";
 import axios from "axios";
 
@@ -29,7 +28,7 @@ export default function Create(props) {
 
     let handleChange = (e) => {
         e.preventDefault();
-        console.log(e.target.selectedOptions);
+        // console.log(e.target.selectedOptions);
         setInput({...input, [e.target.name]: e.target.value})
     }
     
@@ -45,29 +44,16 @@ export default function Create(props) {
                 dieta = dieta.filter(element => element !== e.target.value);
             }
         }
-        console.log(e.target);
-        console.log(e.target.checked);   
+        // console.log(e.target);
+        // console.log(e.target.checked);   
         setInput({...input, dieta: dieta})
         // setInput({...input, [e.target.name]: e.target.value})
     }
 
-    let handleChangeOptions = (e) => {
-        e.preventDefault();
-        // let array = Array.from(e.target.selectedOptions, (option) => option.value);
-        // setInput({...input, dieta: array})
-        var options = e.target.options;
-        var value = [];
-         for (var i = 0, l = options.length; i < l; i++) {
-         if (options[i].selected) {
-        value.push(options[i].value);
-        setInput({...input, dieta: value});
-    }
-  }
-    }
-
     let handleSubmit = (e) => {
         e.preventDefault();
-        console.log(input);
+        console.log(input, "input creado");
+        console.log(e.target, "target creado");
         if (input.title && input.summary) {
             // props.createRecipe(input);
             try {
@@ -82,7 +68,7 @@ export default function Create(props) {
             puntuacion: "",
             level: "",
             pasoapaso: "",
-            dieta: []
+            dieta: [],  
                 })
             setError("");
             setError1("");
@@ -139,20 +125,9 @@ export default function Create(props) {
                         <input type="checkbox" name={element.title} value={element.id} onChange={(e) => handleChangeChecked(e)}></input>
                     </div>
                 )}
-                {/* <label>javi</label>
-                <input type="checkbox" name="dieta1" value={input.dieta.dieta1} onChange={(e) => handleChangeChecked(e)}></input>
-                <label>Dieta2:</label>
-                <input type="checkbox" name="dieta2" value={input.dieta.dieta2}  onChange={(e) => handleChangeChecked(e)}></input>
-                <label>Dieta3:</label>
-                <input type="checkbox" name="dieta3" value={input.dieta.dieta3} onChange={(e) => handleChangeChecked(e)}></input>
-                <label>Dieta4:</label>
-                <input type="checkbox" name="dieta4" value={input.dieta.dieta4} onChange={(e) => handleChangeChecked(e)}></input> */}
                 </div>
             </div>
             </div>
-                {/* <div>{`Falta completar: ${!input.name ? "nombre, " : ""}${!input.summary ? "edad, " : ""}${!input.puntuacion ? "ciudad, " : ""}${!input.level ? "mail " : ""} `} </div>
-                {!error ? null : <span className={s.error}>{error}</span>}
-                </div> */}
                 <div>
                 <div>
                 {!error ? null : <span className={s.error}>{error}</span>}
@@ -166,11 +141,3 @@ export default function Create(props) {
         </div>
     )
 }
-
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         createRecipe: (input) => dispatch(createRecipe(input))
-//     }
-// }
-
-// export default connect(null, mapDispatchToProps)(Create)

@@ -20,14 +20,14 @@ router.post('/', async (req, res, next) => {
           { title: "vegetarian"},
           { title: "glutenFree"},
           { title: "ketogenic"},
-          { title: "Pescetarian"},
+          { title: "pescetarian"},
           { title: "lacto vegetarian"},
           { title: "ovo vegetarian"},
           { title: "lacto ovo vegetarian"},
-          { title: "Paleo"},
-          { title: "Primal"},
+          { title: "paleo"},
+          { title: "primal"},
           { title: "Low FODMAP"},
-          { title: "Whole30"},
+          { title: "whole30"},
           { title: "fruitarian"},
           { title: "dairy free"},
         ])
@@ -41,18 +41,5 @@ router.post('/', async (req, res, next) => {
     res.send("Los types estan cargados");
   }
 })
-
-// router.post('/:dieta', async (req, res) => {
-//     const {dieta} = req.params;
-    
-// try {
-//     const newType = await Types.create({
-//     title: dieta,
-//   })
-//   res.json(newType);
-// } catch (error) {
-//   console.log(error);
-// }
-// });  
 
 module.exports = router;

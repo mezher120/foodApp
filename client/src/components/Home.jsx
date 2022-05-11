@@ -1,26 +1,23 @@
 import React, { useState } from "react";
 import Receta from "./RecetaCard";
 import { useSelector, useDispatch } from "react-redux";
-import {ordenDescendente, ordenAscendente, filtering, filter1, all} from '../actions'
+import {ordenDescendente, filtering, filter1, all} from '../actions'
 import s from "./Home.module.css"
 
 export default function Home(props) {
-    console.log(props, "primer");
+    // console.log(props, "primer");
     
-    // const [order, setOrder] = useState("");
+
     const selector = useSelector((state) => state.search)
-    const nameFilter = useSelector((state) => state.namefilter)
+    // const nameFilter = useSelector((state) => state.namefilter) --> filter back
     const [currentPage, setCurrentPage] = useState(0);
-    // const [posts, setPosts] = useState([]);
-    // const [sortDown, setSortDown] = useState(true);
-    console.log(selector, "selector");
-    console.log(nameFilter, "filtering");
+    // console.log(selector, "selector");
+    // console.log(nameFilter, "filtering");
     const dispatch = useDispatch();
 
     let currentPosts = selector.slice(currentPage, currentPage + 9);
-    // let filterPosts = selector;
         
-    console.log(currentPosts, "que onda currentposts")
+    // console.log(currentPosts, "que onda currentposts")
 
     function adelanteOnClick(e) {
             if(currentPosts.length === 9) {
@@ -38,13 +35,6 @@ export default function Home(props) {
         console.log(currentPosts, "atras");
         console.log(currentPage, "atras");
     }
-
-
-// const handleOnChange = (e) => {
-//     setOrder(e.target.value);
-//     console.log(order, "order");
-// }
-
     
 function SortAZ(e) {
     e.preventDefault();
@@ -59,14 +49,9 @@ function SortAZ(e) {
              }        
              return 0;
          })
-    
-    // setSortDown(false);
     dispatch(ordenDescendente(copy2));
-    // setPosts(copy2);
     }
 }
-
-
 
 function SortZA(e) {
     e.preventDefault();
@@ -87,7 +72,6 @@ function SortZA(e) {
      
     }
 }
-
 
 function SortScoreAZ(e) {
     e.preventDefault();
@@ -130,12 +114,12 @@ function SortScoreZA(e) {
 }
 
 
-function Filter2(e) {
-    e.preventDefault();
-    const filteri = nameFilter;
-    console.log(filteri, e.target.value, "filter2")
-    dispatch(filtering(filteri, e.target.value));
-}
+// function Filter2(e) {  --> filter back
+//     e.preventDefault();
+//     const filteri = nameFilter;
+//     console.log(filteri, e.target.value, "filter2")
+//     dispatch(filtering(filteri, e.target.value));
+// }
 
 function Filter(e) {
     e.preventDefault();
@@ -163,7 +147,7 @@ function Filter(e) {
             
             dispatch(filter1(type));
         }
-        if (type === "diaryHealthy") {
+        if (type === "dairy free") {
             
             dispatch(filter1(type));
         }
@@ -171,15 +155,23 @@ function Filter(e) {
             
             dispatch(filter1(type));
         }
-        if (type === "Pescetarian") {
+        if (type === "pescetarian") {
             
             dispatch(filter1(type));
         }
-        if (type === "Paleo") {
+        if (type === "paleo") {
             
             dispatch(filter1(type));
         }
-        if (type === "Whole30") {
+        if (type === "primal") {
+            
+            dispatch(filter1(type));
+        }
+        if (type === "whole30") {
+            
+            dispatch(filter1(type));
+        }
+        if (type === "lacto ovo vegetarian") {
             
             dispatch(filter1(type));
         }
@@ -187,56 +179,8 @@ function Filter(e) {
     }  
 }
 
-
-
-// if (order === "za") {
-//         const copy = [...selector];
-//         if (copy) {
-//             const stateOrdenado = copy.sort(function (a, b) {
-//                  if (a.title > b.title) {
-//                      return -1;
-//                  }
-//                  if (a.title < b.title) {
-//                      return 1;
-//                  }        
-//                  return 0;
-//              })
-         
-//              dispatch(ordenDescendente(stateOrdenado));
-//              console.log(stateOrdenado, "za)")
-         
-//         }
-//      }
-
-//      if (order === "az") {
-//         const copy = [...selector];
-//          if (copy) {
-             
-//              const stateOrdenado1 = copy.sort(function (a, b) {
-//                  if (a.title > b.title) {
-//                      return 1;
-//                  }
-//                  if (a.title < b.title) {
-//                      return -1;
-//                  }        
-//                  return 0;
-//              })
-         
-//              dispatch(ordenAscendente(stateOrdenado1));
-//              console.log(stateOrdenado1, "az)")
-//          }
-//     }
-
     return (
         <div>
-            {/* <Order state={selector} ></Order> */}
-            {/* <select name="order" value={order} onChange={(e) => handleOnChange(e)}>
-                    <option>Sort By</option>
-                    <option name="Asc" value="az">A/Z Name</option>
-                    <option name="Des" value="za">Z/A Name</option>
-                    <option name="AscScore" value="19">1/9 Score</option>
-                    <option name="DesScore" value="91">9/1 Score</option>
-                </select> */}
             <div>
             Order By: 
             <button className={s.buttonsFilters} onClick={(e) => SortAZ(e)}>A/Z</button>
@@ -251,12 +195,13 @@ function Filter(e) {
             <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="vegan">Vegan</button>
             <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="vegetarian">Vegetarian</button>
             <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="glutenFree">Gluten Free</button>
-            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="diaryHealthy">Diary Healthy</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="dairy free">Dairy Free</button>
             <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="ketogenic">Ketogenic</button>
-            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="Pescetarian">Pescetarian</button>
-            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="Paleo">Paleo</button>
-            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="Primal">Primal</button>
-            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="Whole30">Whole30</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="lacto ovo vegetarian">Lacto Ovo Vegetarian</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="pescetarian">Pescetarian</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="paleo">Paleo</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="primal">Primal</button>
+            <button className={s.buttonsFilters} onClick={(e) => Filter(e)} value="whole30">Whole30</button>
             </div>
             
             <div className={s.container}>
@@ -269,7 +214,6 @@ function Filter(e) {
             </div>
            <button className={s.buttonsFilters} onClick={(e) => atrasOnClick(e)}>Atras</button>
            <button className={s.buttonsFilters} onClick={(e) => adelanteOnClick(e)}>Adelante</button>
-           {/* <Pagination postsPerPage={postsPerPage} totalPosts={selector.length} paginate={paginate}></Pagination> */}
         </div>
     )
 }

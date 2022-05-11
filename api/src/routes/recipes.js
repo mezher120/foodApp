@@ -28,10 +28,7 @@ router.get('/filter', async (req, res, next) => {
                 dataTypes = [];
                 allTypes.forEach(type => {
                     const typeTitle = type.title;
-                    // if (typeTitle == "vegan") {
-                    //     console.log(element.hasOwnProperty(typeTitle));
-                    //     console.log(element.typeTitle);
-                    // }
+
                     if (element.hasOwnProperty(typeTitle) && element[typeTitle] === true) {
                         dataTypes.push(typeTitle);
                     } else if (element.diets.includes(typeTitle)) {
@@ -78,14 +75,6 @@ router.get('/filter', async (req, res, next) => {
             res.json(newFilter);
 
 
-
-            // const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&query=${name}&addRecipeInformation=true&number=20`)
-            // console.log(response.data.results, "hola");
-            // const data = response.data.results.map(e => ({id: e.id, title: e.title, image: e.image, vegetarian: e.vegetarian, vegan: e.vegan, 
-            //     glutenFree: e.glutenFree, diaryHealthy: e.diaryHealthy, score: e.spoonacularScore}));
-            // const filter = data.filter(e => e.vegan === true )
-            // console.log(data);
-            // res.json(filter);
         } catch (error) {
             next(error);
         }
@@ -108,10 +97,7 @@ router.get('/filter', async (req, res, next) => {
                 dataTypes = [];
                 allTypes.forEach(type => {
                     const typeTitle = type.title;
-                    // if (typeTitle == "vegan") {
-                    //     console.log(element.hasOwnProperty(typeTitle));
-                    //     console.log(element.typeTitle);
-                    // }
+
                     if (element.hasOwnProperty(typeTitle) && element[typeTitle] === true) {
                         dataTypes.push(typeTitle);
                     } else if (element.diets.includes(typeTitle)) {
@@ -178,10 +164,7 @@ router.get('/filter', async (req, res, next) => {
                 dataTypes = [];
                 allTypes.forEach(type => {
                     const typeTitle = type.title;
-                    // if (typeTitle == "vegan") {
-                    //     console.log(element.hasOwnProperty(typeTitle));
-                    //     console.log(element.typeTitle);
-                    // }
+
                     if (element.hasOwnProperty(typeTitle) && element[typeTitle] === true) {
                         dataTypes.push(typeTitle);
                     } else if (element.diets.includes(typeTitle)) {
@@ -247,10 +230,7 @@ router.get('/filter', async (req, res, next) => {
                 dataTypes = [];
                 allTypes.forEach(type => {
                     const typeTitle = type.title;
-                    // if (typeTitle == "vegan") {
-                    //     console.log(element.hasOwnProperty(typeTitle));
-                    //     console.log(element.typeTitle);
-                    // }
+
                     if (element.hasOwnProperty(typeTitle) && element[typeTitle] === true) {
                         dataTypes.push(typeTitle);
                     } else if (element.diets.includes(typeTitle)) {
@@ -302,8 +282,7 @@ router.get('/filter', async (req, res, next) => {
     } else {
         try {
             const allTypes = await Types.findAll();
-     
-            // Map the apiResponse to the front end object
+
             const apiResponse = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&query=${name}&addRecipeInformation=true&number=100`)
             dataFromApi = [];
             apiResponse.data.results.forEach(element => {
@@ -317,10 +296,7 @@ router.get('/filter', async (req, res, next) => {
                 dataTypes = [];
                 allTypes.forEach(type => {
                     const typeTitle = type.title;
-                    // if (typeTitle == "vegan") {
-                    //     console.log(element.hasOwnProperty(typeTitle));
-                    //     console.log(element.typeTitle);
-                    // }
+
                     if (element.hasOwnProperty(typeTitle) && element[typeTitle] === true) {
                         dataTypes.push(typeTitle);
                     } else if (element.diets.includes(typeTitle)) {
@@ -328,8 +304,7 @@ router.get('/filter', async (req, res, next) => {
                     }
                 });
                 data.types = dataTypes;
-     
-                // Iterate over OUR types and check if they exist in the api data.
+
                 dataFromApi.push(data);
             });
      
@@ -395,10 +370,6 @@ router.get('/', async (req, res, next) => {
             dataTypes = [];
             allTypes.forEach(type => {
                 const typeTitle = type.title;
-                // if (typeTitle == "vegan") {
-                //     console.log(element.hasOwnProperty(typeTitle));
-                //     console.log(element.typeTitle);
-                // }
                 if (element.hasOwnProperty(typeTitle) && element[typeTitle] === true) {
                     dataTypes.push(typeTitle);
                 } else if (element.diets.includes(typeTitle.toLowerCase())) {
@@ -461,25 +432,10 @@ router.get('/:id', async (req, res, next) => {
                 "instructions": objResp.instructions,
                 "healthScore": objResp.healthScore
             }
-            // dataFromApi = [];
-            // arrayResp.forEach(element => {
-            //     data = {
-            //         "id": element.id,
-            //         "title": element.title,
-            //         "image": element.image,
-            //         "score": element.spoonacularScore,
-            //         "summary": element.summary,
-            //         "instructions": element.instructions,
-            //         "healthScore": healthScore
-            //     };
                 
                 dataTypes = [];
                 allTypes.forEach(type => {
                     const typeTitle = type.title;
-                    // if (typeTitle == "vegan") {
-                    //     console.log(element.hasOwnProperty(typeTitle));
-                    //     console.log(element.typeTitle);
-                    // }
                     if (objResp.hasOwnProperty(typeTitle) && objResp[typeTitle] === true) {
                         dataTypes.push(typeTitle);
                     } else if (objResp.diets.includes(typeTitle.toLowerCase())) {
@@ -488,15 +444,9 @@ router.get('/:id', async (req, res, next) => {
                 });
                 dataFromApi.types = dataTypes;
      
-                // Iterate over OUR types and check if they exist in the api data.
-                // dataFromApi.push(data);
-            // });
 
             res.json(dataFromApi);
 
-
-            // console.log(resp.data);
-            // res.json(resp.data);
     
         } catch (error) {
             console.log(error);

@@ -30,14 +30,14 @@ export default function RecetaCard({id, title, image, score, types}) {
                 (items === "vegan") ? <img className={s.icons} src={veganicon} alt="Not Found"></img> :
                 (items === "glutenFree") ? <img className={s.icons} src={glutenfreeicon} alt="Not Found"></img> : 
                 (items === "ketogenic") ? <img className={s.icons} src={katogenic} alt="Not Found"></img> : 
-                (items === "Pescetarian") ? <img className={s.icons} src={fish} alt="Not Found"></img> : 
+                (items === "pescetarian") ? <img className={s.icons} src={fish} alt="Not Found"></img> : 
                 (items === "lacto vegetarian") ? <img className={s.icons} src={vegetariano} alt="Not Found"></img> : 
                 (items === "ovo vegetarian") ? <img className={s.icons} src={vegetariano} alt="Not Found"></img> : 
                 (items === "lacto ovo vegetarian") ? <img className={s.icons} src={katogenic} alt="Not Found"></img> : 
-                (items === "Primal") ? <img className={s.icons} src={meat} alt="Not Found"></img> : 
-                (items === "Paleo") ? <img className={s.icons} src={meat} alt="Not Found"></img> : 
+                (items === "primal") ? <img className={s.icons} src={meat} alt="Not Found"></img> : 
+                (items === "paleo") ? <img className={s.icons} src={meat} alt="Not Found"></img> : 
                 (items === "Low FODMAP") ? <img className={s.icons} src={katogenic} alt="Not Found"></img> : 
-                (items === "Whole30") ? <img className={s.icons} src={katogenic} alt="Not Found"></img> : 
+                (items === "whole30") ? <img className={s.icons} src={katogenic} alt="Not Found"></img> : 
                 (items === "fruitarian") ? <img className={s.icons} src={fruit} alt="Not Found"></img> : 
                 (items === "dairy free") ? <img className={s.icons} src={diary} alt="Not Found"></img> : 
                 items}
