@@ -6,25 +6,26 @@ import {Route} from 'react-router-dom';
 import Primera from './components/Primera';
 import Create from './components/Create';
 import Recetas from './components/Recetas';
+import Newhtml from './components/Newhtml';
 import axios from 'axios';
 
 
 
 function App() {
 
-let [search, setSearch] = React.useState("");
+// let [search, setSearch] = React.useState("");
 
-async function getSearch(input) {
-  try {
-    const result = await axios.get(`http://localhost:3001/recipes?name=${input.name}`);
-    console.log(result.data);
-    const data = result.data;
-    setSearch(data);
+// async function getSearch(input) {
+//   try {
+//     const result = await axios.get(`http://localhost:3001/recipes?name=${input.name}`);
+//     console.log(result.data);
+//     const data = result.data;
+//     setSearch(data);
     
-  } catch (error) {
-    console.log(error);
-  }
-}
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
   
   return (
     <React.Fragment>
@@ -33,7 +34,6 @@ async function getSearch(input) {
         </Primera>
       </Route>
       <Route path='/home'>
-
       <Navbar ></Navbar>
       </Route>
       <Route exact path='/home'>
@@ -42,6 +42,7 @@ async function getSearch(input) {
       <Route exact path='/home/create'>
       <Create></Create>
       </Route>
+      <Route path='/newhtml' component={Newhtml}></Route>
       <Route path='/detalle/:id' component={Recetas}></Route>
     </React.Fragment>
 

@@ -133,49 +133,13 @@ function Filter(e) {
              dispatch(all());
 
         }
-        if (type === "vegan") {
+        else {
             
             // const copy2 = copy.filter(e => e.vegan === true)
          
              dispatch(filter1(type));
         }
-        if (type === "vegetarian") {
-            
-            dispatch(filter1(type));
-        }
-        if (type === "glutenFree") {
-            
-            dispatch(filter1(type));
-        }
-        if (type === "dairy free") {
-            
-            dispatch(filter1(type));
-        }
-        if (type === "ketogenic") {
-            
-            dispatch(filter1(type));
-        }
-        if (type === "pescetarian") {
-            
-            dispatch(filter1(type));
-        }
-        if (type === "paleo") {
-            
-            dispatch(filter1(type));
-        }
-        if (type === "primal") {
-            
-            dispatch(filter1(type));
-        }
-        if (type === "whole30") {
-            
-            dispatch(filter1(type));
-        }
-        if (type === "lacto ovo vegetarian") {
-            
-            dispatch(filter1(type));
-        }
-     
+           
     }  
 }
 

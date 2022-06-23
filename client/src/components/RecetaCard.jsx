@@ -44,10 +44,6 @@ export default function RecetaCard({id, title, image, score, types}) {
                  </div>
                 )}
             </div>
-            {/* {vegetarian ? <div><img className={s.icons} src={vegetariano} alt="Not Found"></img></div> : null}
-            {vegan ? <div><img className={s.icons} src={veganicon} alt="Not Found"></img></div> : null}
-            {glutenFree ? <div><img className={s.icons} src={glutenfreeicon} alt="Not Found"></img></div> : null}
-            {diaryHealthy ? <div><img className={s.icons} src={diary} alt="Not Found"></img></div> : null} */}
             </div>
             </NavLink>
 

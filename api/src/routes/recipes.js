@@ -358,16 +358,16 @@ router.get('/', async (req, res, next) => {
  
 
         const apiResponse = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&query=${name}&addRecipeInformation=true&number=100`)
-        dataFromApi = [];
+        const dataFromApi = [];
         apiResponse.data.results.forEach(element => {
             data = {
                 "id": element.id,
                 "title": element.title,
                 "image": element.image,
-                "score": element.spoonacularScore
+                "score": element.healthScore
             };
             
-            dataTypes = [];
+           const dataTypes = [];
             allTypes.forEach(type => {
                 const typeTitle = type.title;
                 if (element.hasOwnProperty(typeTitle) && element[typeTitle] === true) {
@@ -390,7 +390,7 @@ router.get('/', async (req, res, next) => {
             }
         });
  
-        dataFromDb = [];
+        const dataFromDb = [];
         dbResponse.forEach(element => {
             data = {
                 "id": element.id,
@@ -399,7 +399,7 @@ router.get('/', async (req, res, next) => {
                 "score": element.puntuacion
             }
  
-            dataTypes = [];
+            const dataTypes = [];
             element.types.forEach(type => {
                 dataTypes.push(type.title);
             });
@@ -433,7 +433,7 @@ router.get('/:id', async (req, res, next) => {
                 "healthScore": objResp.healthScore
             }
                 
-                dataTypes = [];
+                const dataTypes = [];
                 allTypes.forEach(type => {
                     const typeTitle = type.title;
                     if (objResp.hasOwnProperty(typeTitle) && objResp[typeTitle] === true) {
@@ -462,7 +462,7 @@ router.get('/:id', async (req, res, next) => {
                 }
             });
     
-            dataFromDb = [];
+            const dataFromDb = [];
             dbResponse.forEach(element => {
                 data = {
                     "id": element.id,

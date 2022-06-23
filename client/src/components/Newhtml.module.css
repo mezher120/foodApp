@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    background-color: rgb(106, 203, 233);
+    padding: 10px;
+}
+
+.textuser {
+    color: white;
+    font-family: Tahoma;
+    margin: 10px;
+    text-align: center;
+}
+
+
+
+.body {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(106, 203, 233);
+    width: max-content;
+    border-radius: 10px;
+}
+
+.card {
+    background-color: white;
+    font-family: Tahoma;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    justify-items: center;
+    margin: 10px;
+
+}
