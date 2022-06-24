@@ -9,7 +9,7 @@ export default function Principal(props) {
 
     useEffect(() => {
         async function postData() {
-            await axios.post('http://localhost:3001/types/');
+            await axios.post('/types/');
         }
         postData();
         console.log('cargados los types');

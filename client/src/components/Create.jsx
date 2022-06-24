@@ -18,7 +18,7 @@ export default function Create(props) {
 
      React.useEffect(() => {
         async function getData() {
-            setTypes(await axios.get('http://localhost:3001/types/'));
+            setTypes(await axios.get('/types/'));
            
         }
         getData();
@@ -57,7 +57,7 @@ export default function Create(props) {
         if (input.title && input.summary) {
             // props.createRecipe(input);
             try {
-                axios.post('http://localhost:3001/recipe/', input)
+                axios.post('/recipe/', input)
                 .then(res => console.log(res));
             } catch (error) {
                 console.log(error);
