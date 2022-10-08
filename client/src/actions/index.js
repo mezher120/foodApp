@@ -33,3 +33,15 @@ export function searching(input) {
             .catch(error => console.log(error))
     }
 }
+
+export function getAll() {
+    return async function (dispatch) {
+        try {
+            const response = await axios.get('/all');
+            return dispatch({type: "GET_ALL_FIRST", payload: response.data});
+            
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+}

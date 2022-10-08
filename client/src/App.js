@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './components/Navbar';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Home from './components/Home';
 import {Route} from 'react-router-dom';
 import Primera from './components/Primera';
@@ -8,24 +8,18 @@ import Create from './components/Create';
 import Recetas from './components/Recetas';
 import Newhtml from './components/Newhtml';
 import axios from 'axios';
-
+import { getAll } from './actions';
+import { useDispatch } from 'react-redux';
 
 
 function App() {
 
-// let [search, setSearch] = React.useState("");
+const dispatch = useDispatch();
 
-// async function getSearch(input) {
-//   try {
-//     const result = await axios.get(`http://localhost:3001/recipes?name=${input.name}`);
-//     console.log(result.data);
-//     const data = result.data;
-//     setSearch(data);
-    
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+useEffect(()=>{
+dispatch(getAll());
+},[]);
+
   
   return (
     <React.Fragment>

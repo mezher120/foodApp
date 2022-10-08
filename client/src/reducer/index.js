@@ -33,6 +33,10 @@ export default function reducer(state = initialState, action) {
             const all = state.searchcopy;
             return {
                 ...state, search: all
+            }  
+        case "GET_ALL_FIRST":
+            return {
+                ...state, search: action.payload
             }
             
         default:
